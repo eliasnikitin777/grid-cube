@@ -1,0 +1,12 @@
+{
+  "name": "grid-cube",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test:browser": "node tests/browser.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0"
+  }
+}

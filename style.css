@@ -1,0 +1,267 @@
+:root {
+  color-scheme: dark;
+  background: #171d23;
+  --columns: 18;
+  --rows: 32;
+  --cube-size: 3;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100dvh;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+    max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+#field {
+  position: relative;
+  width: min(420px, 100%, calc((100dvh - max(16px, env(safe-area-inset-top)) - max(16px, env(safe-area-inset-bottom))) * 9 / 16));
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background-color: #242e37;
+  background-image:
+    linear-gradient(to right, #d6e6f018 1px, transparent 1px),
+    linear-gradient(to bottom, #d6e6f018 1px, transparent 1px);
+  background-size: calc(100% / var(--columns)) calc(100% / var(--rows));
+  box-shadow: 0 18px 60px #0003, inset 0 0 0 1px #d6e6f018;
+  touch-action: none;
+}
+
+.cube, #landing {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(100% * var(--cube-width, var(--cube-size)) / var(--columns));
+  height: calc(100% * var(--cube-height, var(--cube-size)) / var(--rows));
+}
+
+#landing {
+  z-index: 0;
+  pointer-events: none;
+  background: var(--preview-color, #8df9d640);
+}
+
+#selection-box {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+  border: 1px solid #ffffffb3;
+  background: #ffffff14;
+}
+
+.line-clear {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  background: #d6fff3;
+  animation: clear-line 240ms ease-out forwards;
+}
+
+@keyframes clear-line {
+  from { opacity: 0.8; }
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line-clear { animation-duration: 1ms; }
+}
+
+
+.cube {
+  --cube-light: #a8efcf;
+  --cube-mid: #64cfa6;
+  --cube-dark: #4cae8b;
+  --landing-color: #8df9d640;
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 10%;
+  background: linear-gradient(145deg, var(--cube-light), var(--cube-mid) 65%, var(--cube-dark));
+  box-shadow: inset 0 2px 1px #ffffff60, inset 0 -3px 1px #00000020;
+  cursor: grab;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cube[data-color="blue"] {
+  --cube-light: #a9dfff;
+  --cube-mid: #68b8ef;
+  --cube-dark: #4895cb;
+  --landing-color: #8bcdff40;
+}
+.cube[data-color="purple"] {
+  --cube-light: #d9bcff;
+  --cube-mid: #b08be7;
+  --cube-dark: #8b65c4;
+  --landing-color: #c5a2ff40;
+}
+.cube[data-color="gold"] {
+  --cube-light: #ffe7a0;
+  --cube-mid: #edc25c;
+  --cube-dark: #c9a044;
+  --landing-color: #ffda7c40;
+}
+.cube[data-color="coral"] {
+  --cube-light: #ffbea8;
+  --cube-mid: #f08d7e;
+  --cube-dark: #cd6c61;
+  --landing-color: #ffa39040;
+}
+
+.cube[data-color="peach"] {
+  --cube-light: #ffd4a9;
+  --cube-mid: #efad7b;
+  --cube-dark: #ce895e;
+  --landing-color: #ffc39940;
+}
+.cube[data-color="teal"] {
+  --cube-light: #8be4d6;
+  --cube-mid: #46b6ad;
+  --cube-dark: #298e88;
+  --landing-color: #70d7cc40;
+}
+.cube[data-color="pink"] {
+  --cube-light: #ffc6e0;
+  --cube-mid: #ed95be;
+  --cube-dark: #ca6d9a;
+  --landing-color: #ffb0d340;
+}
+.cube[data-color="lime"] {
+  --cube-light: #ddefa3;
+  --cube-mid: #b1d36a;
+  --cube-dark: #88ac47;
+  --landing-color: #c9e58b40;
+}
+.cube[data-color="amber"] {
+  --cube-light: #ffd095;
+  --cube-mid: #eca452;
+  --cube-dark: #c57e31;
+  --landing-color: #ffba7040;
+}
+.cube[data-color="cobalt"] {
+  --cube-light: #a4bfff;
+  --cube-mid: #7999e1;
+  --cube-dark: #5677bb;
+  --landing-color: #99b5ff40;
+}
+.cube[data-color="rose"] {
+  --cube-light: #f8a8bf;
+  --cube-mid: #d87597;
+  --cube-dark: #b75378;
+  --landing-color: #ef93b040;
+}
+.cube[data-color="cyan"] {
+  --cube-light: #b0edf2;
+  --cube-mid: #75cbdc;
+  --cube-dark: #4fa4bc;
+  --landing-color: #95e1ef40;
+}
+.cube[data-color="moss"] {
+  --cube-light: #b6dba9;
+  --cube-mid: #81b675;
+  --cube-dark: #5d8e52;
+  --landing-color: #a2cd9340;
+}
+.cube[data-color="cream"] {
+  --cube-light: #fff5d5;
+  --cube-mid: #e7d6a4;
+  --cube-dark: #c4b17f;
+  --landing-color: #f5e7bc40;
+}
+.cube[data-color="red"] {
+  --cube-light: #f6a19b;
+  --cube-mid: #d96566;
+  --cube-dark: #b5474d;
+  --landing-color: #ed898640;
+}
+.cube[data-color="lilac"] {
+  --cube-light: #e3cff5;
+  --cube-mid: #c2a6de;
+  --cube-dark: #9f82bd;
+  --landing-color: #d6bdec40;
+}
+.cube[data-color="mega"] {
+  --cube-light: #8de0df;
+  --cube-mid: #49b5bb;
+  --cube-dark: #298c9c;
+  --landing-color: #80d8e240;
+}
+.cube[data-color="giant"] {
+  --cube-light: #a3c8ff;
+  --cube-mid: #709de5;
+  --cube-dark: #4c72bb;
+  --landing-color: #94b9ff40;
+}
+.cube[data-color="sun"] {
+  --cube-light: #ffe298;
+  --cube-mid: #e5b94f;
+  --cube-dark: #bb8f33;
+  --landing-color: #fbd77e40;
+}
+.cube[data-color="leaf"] {
+  --cube-light: #a8d8a1;
+  --cube-mid: #71b77f;
+  --cube-dark: #4a905e;
+  --landing-color: #95cc9c40;
+}
+.cube[data-color="mid-sun"] {
+  --cube-light: #ffe2a5;
+  --cube-mid: #efbd69;
+  --cube-dark: #c69343;
+  --landing-color: #ffd58e40;
+}
+.cube[data-color="mid-ocean"] {
+  --cube-light: #9bd9f4;
+  --cube-mid: #5aafd6;
+  --cube-dark: #3885b2;
+  --landing-color: #88ceec40;
+}
+.cube[data-color="small-sun"] {
+  --cube-light: #ffe7ac;
+  --cube-mid: #f3c76d;
+  --cube-dark: #cda14b;
+  --landing-color: #ffdb8c40;
+}
+.cube[data-color="small-violet"] {
+  --cube-light: #dac3ff;
+  --cube-mid: #af90e2;
+  --cube-dark: #896ac2;
+  --landing-color: #c6aafa40;
+}
+.cube[data-color="small-ocean"] {
+  --cube-light: #a0eadb;
+  --cube-mid: #58c5b7;
+  --cube-dark: #39998e;
+  --landing-color: #8ddbcc40;
+}
+.cube[data-color="dot-green"] {
+  --cube-light: #c1e7a0;
+  --cube-mid: #92c66d;
+  --cube-dark: #6e9e4e;
+  --landing-color: #aed98940;
+}
+.cube[data-color="dot-rose"] {
+  --cube-light: #ffc1bd;
+  --cube-mid: #ee9092;
+  --cube-dark: #c56a77;
+  --landing-color: #ffaeaf40;
+}
+.cube[data-color="dot-blue"] {
+  --cube-light: #ace6ff;
+  --cube-mid: #72c3eb;
+  --cube-dark: #509bd0;
+  --landing-color: #97d8fb40;
+}
+
+.cube[data-dragging="true"] { cursor: grabbing; z-index: 2; }
+.cube:focus { outline: none; }
+.cube:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+.cube[data-selected="true"] { outline: 3px solid #fff; outline-offset: -3px; }

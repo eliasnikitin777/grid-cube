@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171d23">
+  <title>Кубики — очистка линий</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <main id="field" aria-label="Игровое поле. Заполняйте целиком строки или столбцы кубиками любого цвета: заполненные линии исчезают после хода. Оставшиеся части кубиков можно двигать отдельно. Перетаскивайте пальцем или мышью, либо используйте стрелки клавиатуры."
+    data-columns="18" data-rows="32">
+    <div id="landing" aria-hidden="true" hidden></div>
+    <div id="selection-box" aria-hidden="true" hidden></div>
+    <button id="cube" class="cube" type="button" data-size="3" data-column="7" data-row="14" data-color="mint" aria-label="Мятный кубик" draggable="false"></button>
+    <button id="cube-blue" class="cube" type="button" data-size="2" data-column="4" data-row="10" data-color="blue" aria-label="Голубой кубик" draggable="false"></button>
+    <button id="cube-purple" class="cube" type="button" data-size="2" data-column="11" data-row="19" data-color="purple" aria-label="Фиолетовый кубик" draggable="false"></button>
+    <button id="cube-gold" class="cube" type="button" data-size="1" data-column="12" data-row="12" data-color="gold" aria-label="Жёлтый кубик" draggable="false"></button>
+    <button id="cube-coral" class="cube" type="button" data-size="1" data-column="5" data-row="20" data-color="coral" aria-label="Коралловый кубик" draggable="false"></button>
+    <button id="cube-peach" class="cube" type="button" data-size="5" data-column="2" data-row="3" data-color="peach" aria-label="Персиковый кубик" draggable="false"></button>
+    <button id="cube-teal" class="cube" type="button" data-size="4" data-column="13" data-row="0" data-color="teal" aria-label="Бирюзовый кубик" draggable="false"></button>
+    <button id="cube-pink" class="cube" type="button" data-size="4" data-column="8" data-row="27" data-color="pink" aria-label="Розовый кубик" draggable="false"></button>
+    <button id="cube-lime" class="cube" type="button" data-size="3" data-column="2" data-row="14" data-color="lime" aria-label="Лаймовый кубик" draggable="false"></button>
+    <button id="cube-amber" class="cube" type="button" data-size="3" data-column="13" data-row="15" data-color="amber" aria-label="Янтарный кубик" draggable="false"></button>
+    <button id="cube-cobalt" class="cube" type="button" data-size="3" data-column="3" data-row="25" data-color="cobalt" aria-label="Синий кубик" draggable="false"></button>
+    <button id="cube-rose" class="cube" type="button" data-size="2" data-column="13" data-row="8" data-color="rose" aria-label="Малиновый кубик" draggable="false"></button>
+    <button id="cube-cyan" class="cube" type="button" data-size="2" data-column="14" data-row="10" data-color="cyan" aria-label="Небесный кубик" draggable="false"></button>
+    <button id="cube-moss" class="cube" type="button" data-size="2" data-column="1" data-row="21" data-color="moss" aria-label="Зелёный кубик" draggable="false"></button>
+    <button id="cube-cream" class="cube" type="button" data-size="1" data-column="9" data-row="3" data-color="cream" aria-label="Кремовый кубик" draggable="false"></button>
+    <button id="cube-red" class="cube" type="button" data-size="1" data-column="15" data-row="22" data-color="red" aria-label="Красный кубик" draggable="false"></button>
+    <button id="cube-lilac" class="cube" type="button" data-size="1" data-column="7" data-row="24" data-color="lilac" aria-label="Сиреневый кубик" draggable="false"></button>
+    <button id="cube-mega" class="cube" type="button" data-size="6" data-column="12" data-row="26" data-color="mega" aria-label="Большой бирюзовый кубик" draggable="false"></button>
+    <button id="cube-giant" class="cube" type="button" data-size="5" data-column="8" data-row="5" data-color="giant" aria-label="Большой синий кубик" draggable="false"></button>
+    <button id="cube-large-sun" class="cube" type="button" data-size="4" data-column="14" data-row="4" data-color="sun" aria-label="Большой золотой кубик" draggable="false"></button>
+    <button id="cube-large-leaf" class="cube" type="button" data-size="4" data-column="0" data-row="8" data-color="leaf" aria-label="Большой зелёный кубик" draggable="false"></button>
+    <button id="cube-mid-sun" class="cube" type="button" data-size="3" data-column="9" data-row="22" data-color="mid-sun" aria-label="Золотой кубик" draggable="false"></button>
+    <button id="cube-mid-ocean" class="cube" type="button" data-size="3" data-column="15" data-row="19" data-color="mid-ocean" aria-label="Морской кубик" draggable="false"></button>
+    <button id="cube-small-sun" class="cube" type="button" data-size="2" data-column="0" data-row="5" data-color="small-sun" aria-label="Солнечный кубик" draggable="false"></button>
+    <button id="cube-small-violet" class="cube" type="button" data-size="2" data-column="10" data-row="12" data-color="small-violet" aria-label="Лавандовый кубик" draggable="false"></button>
+    <button id="cube-small-ocean" class="cube" type="button" data-size="2" data-column="5" data-row="23" data-color="small-ocean" aria-label="Аквамариновый кубик" draggable="false"></button>
+    <button id="cube-dot-green" class="cube" type="button" data-size="1" data-column="12" data-row="22" data-color="dot-green" aria-label="Травяной кубик" draggable="false"></button>
+    <button id="cube-dot-rose" class="cube" type="button" data-size="1" data-column="0" data-row="24" data-color="dot-rose" aria-label="Розовый маленький кубик" draggable="false"></button>
+    <button id="cube-dot-blue" class="cube" type="button" data-size="1" data-column="17" data-row="8" data-color="dot-blue" aria-label="Голубой маленький кубик" draggable="false"></button>
+  </main>
+</body>
+</html>
